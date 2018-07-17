@@ -19,6 +19,9 @@ let counter =0;
 let starsNum = 3;
 let list = ' ';
 let item = ' ';
+let gameTimer;
+let minutes = document.querySelector('.minu');
+let seconds = document.querySelector('.sec');
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 
@@ -84,11 +87,8 @@ function nomatch() {
     openCards[i].classList.add('nomatch');
   }
 }
-//timer
-let gameTimer;
-let minutes = document.querySelector('.minu');
-let seconds = document.querySelector('.sec');
 
+//timer
 function time() {
   let min = 0;
   let sec = 0;
