@@ -82,13 +82,14 @@ h1 {
 }
 
 .deck .card.nomatch {
+    background: #cc3b02;
     cursor: default;
-    background: #fc0707;
     font-size: 33px;
-    animation-name: pulse;
-    -webkit-backface-visibility: visible !important;
-    backface-visibility: visible !important;
-    animation-duration: .75s;
+}
+
+
+.noDouble{
+    pointer-events: none;
 }
 /*
  * Styles for the Score Panel

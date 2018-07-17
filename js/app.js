@@ -73,7 +73,7 @@ function match() {
  // close the card then it does not match
 function close() {
   for (let i = 0; i < openCards.length; i++) {
-    openCards[i].classList.remove('open', 'show');
+    openCards[i].classList.remove('noDouble', 'nomatch', 'open', 'show');
   }
   openCards.splice(0, 2);
 }
@@ -86,36 +86,33 @@ function nomatch() {
 }
 //timer
 let gameTimer;
+let minutes = document.querySelector('.minu');
+let seconds = document.querySelector('.sec');
+
 function time() {
-  let minutes = 0;
-  let seconds = 0;
-  setInterval(function () {
-    seconds++;
-    if (seconds === 59) {
-      seconds=0;
-      minutes +=1;
-      document.querySelector('.minu').innerText = minutes;
-      console.log(minutes);
-      console.log(seconds);
-      document.querySelector('.sec').innerText = seconds;
+  let min = 0;
+  let sec = 0;
+  gameTimer = setInterval(() => {
+    if (sec === 10) {
+      min += 1
+      sec = 0
     }
+    minutes.innerText = min;
+    seconds.innerText = sec++;
   }, 1000);
 }
 
+time();
 //it check if the cards match ? it reset back to defaul
 function checker() {
-  /*if (openCards.length === 1) {
-    openCards[0].style.pointerEvents = "none";
-  }*/
-    if (openCards.length ===2) {
+  if (openCards.length ===2) {
       if (openCards[0].querySelector('i').className === openCards[1].querySelector('i').className) {
         match();
       }else{
+        nomatch()
         setTimeout(function() {
           close();
-          nomatch();
-        }, 500);
-        //openCards[0].style.pointerEvents = "auto";
+        }, 850);
       }
       addMoves();
     }
@@ -145,7 +142,6 @@ function stars() {
 
 // the popUp alert when the user win the game
 function popUp() {
-  stars();
   let pop = document.querySelector('.popbox');
   pop.style.display = "block";
   let again = document.querySelector('.again');
@@ -163,7 +159,6 @@ function popUp() {
 //the click func and return the result 
 function clicker() {
   deck.addEventListener('click', function (event) {
-    time();
     if (event.target.nodeName === 'LI') {
       if (openCards.length === 2) {
         return;
@@ -171,17 +166,15 @@ function clicker() {
       if (event.target.classList.contains('match')) {
         return;
       }
-      event.target.classList.add('open', 'show');
+      event.target.classList.add('noDouble', 'open', 'show');
       openCards.push(event.target);
     }
     checker();
+    stars()
     win();
-    stars();
-    console.log(starsNum);
   });
 }
 clicker();
-
 
 // reset the game button by reloading  the page.
 function reset() {
