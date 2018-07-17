@@ -92,7 +92,7 @@ let seconds = document.querySelector('.sec');
 function time() {
   let min = 0;
   let sec = 0;
-  gameTimer = setInterval(() => {
+  gameTimer = setInterval(function() {
     if (sec === 10) {
       min += 1
       sec = 0
@@ -120,8 +120,10 @@ function checker() {
 
 // it alert the popUP function when all the cards match
 function win() {
-  if (matchCards.length === 8) {
-    popUp();
+  if (matchCards.length === 1) {
+    setTimeout(function() {
+      popUp();
+    },  1000);
   }
 }
 
@@ -142,11 +144,13 @@ function stars() {
 
 // the popUp alert when the user win the game
 function popUp() {
+  clearInterval(gameTimer);
   let pop = document.querySelector('.popbox');
   pop.style.display = "block";
   let again = document.querySelector('.again');
   let ouput = document.querySelector('.outPut');
   ouput.innerText = "With " + counter + ' moves and ' + starsNum + ' stars.';
+  ouput.innerText += "\n" +minutes.innerHTML + " min  " + seconds.innerHTML + " sec.";
   again.addEventListener('click', function() {
     pop.style.display = 'none';
     location.reload();
