@@ -120,7 +120,7 @@ function checker() {
 
 // it alert the popUP function when all the cards match
 function win() {
-  if (matchCards.length === 1) {
+  if (matchCards.length === 8) {
     setTimeout(function() {
       popUp();
     },  1000);
