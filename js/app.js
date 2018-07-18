@@ -54,13 +54,8 @@ function newBoard() {
   }
 
 }
-window.onload= newBoard();
 
-// a func that keep track of the moves
-function addMoves() {
-  counter++;
-  moves.innerText = counter;
-}
+window.onload= newBoard();
 
 //add the match class function remove the 'open' and 'show' class when it match add the 'match' class
 function match() {
@@ -93,7 +88,7 @@ function time() {
   let min = 0;
   let sec = 0;
   gameTimer = setInterval(function() {
-    if (sec === 10) {
+    if (sec === 60) {
       min += 1
       sec = 0
     }
@@ -102,20 +97,28 @@ function time() {
   }, 1000);
 }
 
-time();
+//start time() after the first click
+deck.addEventListener('click', time, {once: true});
+
+// a func that keep track of the moves
+function addMoves() {
+  counter++;
+  moves.innerText = counter;
+}
+
 //it check if the cards match ? it reset back to defaul
 function checker() {
-  if (openCards.length ===2) {
-      if (openCards[0].querySelector('i').className === openCards[1].querySelector('i').className) {
-        match();
-      }else{
-        nomatch()
-        setTimeout(function() {
-          close();
-        }, 850);
-      }
-      addMoves();
+  if(openCards.length ===2) {
+    if (openCards[0].querySelector('i').className === openCards[1].querySelector('i').className) {
+      match();
+    }else{
+      nomatch()
+      setTimeout(function() {
+        close();
+      }, 850);
     }
+    addMoves();
+  }
 }
 
 // it alert the popUP function when all the cards match
@@ -156,8 +159,6 @@ function popUp() {
     location.reload();
   });
 }
-
-
 
 
 //the click func and return the result 
