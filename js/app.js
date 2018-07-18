@@ -124,6 +124,8 @@ function checker() {
 // it alert the popUP function when all the cards match
 function win() {
   if (matchCards.length === 8) {
+    //stop the time before calling the popUp func
+    clearInterval(gameTimer);
     setTimeout(function() {
       popUp();
     },  1000);
@@ -147,7 +149,6 @@ function stars() {
 
 // the popUp alert when the user win the game
 function popUp() {
-  clearInterval(gameTimer);
   let pop = document.querySelector('.popbox');
   pop.style.display = "block";
   let again = document.querySelector('.again');
