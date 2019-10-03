@@ -2,6 +2,8 @@
 
 Udacity project
 
+Line demo * https://jalloh-codes.github.io/memory-game/
+
 # How To Play
 
 click one card and click the second card
@@ -26,3 +28,5 @@ font link
 
 
  #By *Saylu J*
+ 
+ 
