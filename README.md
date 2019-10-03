@@ -2,7 +2,7 @@
 
 Udacity project
 
-Line demo * https://jalloh-codes.github.io/memory-game/
+Life demo  https://jalloh-codes.github.io/memory-game/
 
 # How To Play
 
